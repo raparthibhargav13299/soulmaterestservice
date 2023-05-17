@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - 27017:27017
+
+  soulmate:
+    image: 13291329/soulmate:v1
+    container_name: soulmate
+    ports:
+      - 8083:8083
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/mydemo
+    depends_on:
+      - mongodb
+    restart: always
+
+
